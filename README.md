@@ -1,11 +1,10 @@
-#JSON-Routes
-
 [![screenshot](http://i.imgur.com/8fLOUNP.gif)](http://i.imgur.com/8fLOUNP.gif)
 
 
 Let's write an angular web application! But first, enjoy this gif of a truck driver making a surprise move.
 
 ## Description
+## Note: fork your repo from [here](https://github.com/TIY-Charlotte-Java/JSON-Routes).
 
 Create a project called `RegistrationForm`. Download [angular.zip](https://github.com/oakes/java-assignments/raw/master/curriculum/assets/angular.zip) and extract it, then rename the folder to `public` and move it into the root of your project. This is a fully complete client-side web app, and you will need to write the backend for it using Spark and H2.
 
@@ -23,7 +22,6 @@ Create a project called `RegistrationForm`. Download [angular.zip](https://githu
   * `insertUser`
   * `updateUser`
   * `deleteUser`
-* Write tests for the four methods.
 * Create a GET route called `/user` that  calls `selectUsers` and returns the data as JSON.
 * Create a POST route called `/user` that parses `request.body()` into a `User` object and calls `insertUser` to put it in the database.
 * Create a PUT route called `/user` that parses `request.body()` into a `User` object and calls `updateUser` to update it in the database.
