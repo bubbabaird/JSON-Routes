@@ -6,7 +6,7 @@ Let's write an angular web application! But first, enjoy this gif of a truck dri
 ## Description
 ## Note: fork your repo from [here](https://github.com/TIY-Charlotte-Java/JSON-Routes).
 
-Create a project called `RegistrationForm`. Download [angular.zip](https://github.com/oakes/java-assignments/raw/master/curriculum/assets/angular.zip) and extract it, then rename the folder to `public` and move it into the root of your project. This is a fully complete client-side web app, and you will need to write the backend for it using Spark and H2.
+Create a project called `RegistrationForm`. Download [angular.zip](https://github.com/oakes/java-assignments/raw/master/curriculum/assets/angular.zip) and extract the contents into the `resources/public` of a new project. This is a fully complete client-side web app, and you will need to write the backend for it using Spark and H2. (A lot like we did in class).
 
 ## Requirements
 
