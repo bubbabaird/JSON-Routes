@@ -28,6 +28,26 @@ public class Main {
 //        stmt.setString(2, text);
 //        stmt.execute();
 //    }
+    public static void insertUser(Connection conn, String username, String address, String email) throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO users VALUES (NULL, ?, ?, ?)");
+        stmt.setString(1, username);
+        stmt.setString(2, address);
+        stmt.setString(3, email);
+        stmt.execute();
+    }
+    public static void updateUser(Connection conn, User user) throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("UPDATE users SET username = ?, address = ?, email = ? where id = ?"); //need to know how to write this sql
+        stmt.setString(1, user.username);
+        stmt.setString(2, user.address);
+        stmt.setString(3, user.email);
+        stmt.setInt(4, user.id);
+        stmt.execute();
+    }
+    public static void deleteUser(Connection conn, int id) throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("delete from users where id = ?"); //need to know how to write this sql
+        stmt.setInt(1, id);
+        stmt.execute();
+    }
 
     public static ArrayList<User> selectUsers(Connection conn) throws SQLException {
         ArrayList<User> users = new ArrayList<>();
@@ -91,13 +111,51 @@ public class Main {
 //                    return s.serialize(messages);
 //                })
 //        );
+//        Spark.post(
+//                "/add-message",
+//                ((request, response) -> {
+//                    String body = request.body();
+//                    JsonParser p = new JsonParser();
+//                    Message msg = p.parse(body, Message.class);
+//                    insertMessage(conn, msg.author, msg.text);
+//                    return "";
+//                })
+//        );
         Spark.post(
-                "/add-message",
+                "/user",
+                ((request, response) -> {
+
+                    // when we receive a post request for a user
+                    // the body of the request will contain the user data
+                    // in json.
+                    String body = request.body();
+
+                    // we should convert that json into a user object
+                    JsonParser p = new JsonParser();
+                    User usrp = p.parse(body, User.class);
+
+                    // once we have our user object, we should insert it.
+                    insertUser(conn, usrp.username, usrp.address, usrp.email);
+                    return "";
+                })
+        );
+
+        Spark.put(
+                "/user",
                 ((request, response) -> {
                     String body = request.body();
-                    JsonParser p = new JsonParser();
-                    Message msg = p.parse(body, Message.class);
-                    insertMessage(conn, msg.author, msg.text);
+                    JsonParser r = new JsonParser();
+                    User usrr = r.parse(body, User.class);
+                    updateUser(conn, usrr);
+                    return "";
+                })
+        );
+
+        Spark.delete(
+                "/user/:id",
+                ((request, response) -> {
+                    int id = Integer.valueOf(request.params("id"));
+                    deleteUser(conn, id);
                     return "";
                 })
         );

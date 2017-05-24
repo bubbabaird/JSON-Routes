@@ -9,8 +9,25 @@ public class User {
     String address;
     String email;
 
-    public Integer getId() {
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getId() {
         return id;
+
     }
 
     public String getUsername() {
@@ -19,6 +36,10 @@ public class User {
 
     public String getAddress() {
         return address;
+    }
+
+    public User() {
+        // needed for the json serializer/parser.
     }
 
     public User(Integer id, String username, String address, String email) {
